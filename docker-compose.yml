@@ -1,0 +1,14 @@
+version: '2'
+services:
+  webapp:
+    build: ./chinook
+    container_name: webapp
+    ports:
+     - "8080:8080"
+    volumes:
+     - .:/chinook
+    depends_on:
+     - postgres
+  postgres:
+    container_name: postgres
+    image: postgres
