@@ -1,10 +1,18 @@
 version: '2'
 services:
   webapp:
-    build: ./chinook
+    build:
+      context: ./chinook
+      args:
+        username: $django_superuser_name
+        password: $django_superuser_password
+        email: $django_superuser_email
+        port: $django_port
     container_name: webapp
+    env_file:
+      - .env
     ports:
-     - "8080:8080"
+     - "${django_port}:${django_port}"
     volumes:
      - .:/chinook
     depends_on:
