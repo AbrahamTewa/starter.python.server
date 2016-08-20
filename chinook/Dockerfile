@@ -15,5 +15,6 @@ RUN    apk update \
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 RUN tar -C /usr/local/bin -xzvf dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
 ENTRYPOINT dockerize -wait tcp://db:$db_port && \
+           python manage.py makemigrations && \
            python manage.py migrate && \
            python manage.py runserver 0.0.0.0:${app_port}
