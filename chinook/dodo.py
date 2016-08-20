@@ -1,3 +1,7 @@
+import os
+import psycopg2
+import time
+
 def task_hello():
     """hello"""
 
